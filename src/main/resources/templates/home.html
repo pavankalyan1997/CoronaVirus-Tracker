@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>CoronaVirus Tracker Application</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+<div class="container">
+
+<!--<p th:text="${testName}"></p>-->
+<h1>CoronaVirus Tracker Application</h1>
+<p>This application lists current number of cases reported across the globe</p>
+<div class="jumbotron">
+
+    <ul class="list-group list-group-horizontal">
+        <li class="list-group-item"><div>
+            <h1 class="display-4" th:text="${totalReportedCases}"></h1>
+            <p class="lead">Total Cases reported as of today</p>
+        </div></li>
+        <li class="list-group-item"><div>
+            <h1 class="display-4" th:text="${totalDeaths}"></h1>
+            <p class="lead">Total Deaths reported as of today</p>
+        </div></li>
+        <li class="list-group-item"><div>
+            <h1 class="display-4" th:text="${recoveredCases}"></h1>
+            <p class="lead">Total Recovered Cases reported as of today</p>
+        </div></li>
+    </ul>
+
+    <hr class="my-4">
+    <p>
+        <span>New cases reported since previous day</span>
+        <span th:text="${totalNewCases}"></span>
+    </p>
+</div>
+
+
+    <table class="table">
+        <tr>
+            <th scope="col">State</th>
+            <th scope="col">Country</th>
+            <th scope="col">Total cases reported</th>
+            <th scope="col">Changes since last day</th>
+            <th scope="col">No Of Deaths</th>
+            <th scope="col">No of Recovered cases</th>
+        </tr>
+        <tr th:each="locationStat : ${locationStats}">
+            <td th:text="${locationStat.state}">-</td>
+            <td th:text="${locationStat.country}"></td>
+            <td th:text="${locationStat.latestTotalCases}">0</td>
+            <td th:text="${locationStat.diffFromPrevDay}">0</td>
+            <td th:text="${locationStat.deathCases}">0</td>
+            <td th:text="${locationStat.recoveredCases}">0</td>
+        </tr>
+    </table>
+
+</div>
+
+</body>
+
+</html>
